@@ -50,21 +50,20 @@ char *url_decode(const char *str) {
       else if(dStr[i] == '+') { dStr[i] = ' '; }
     }
   }
-
+// free(dStr);
   return dStr;
 }
 
 int main()
 {
-  char buf[1024];
-  char *out;
-
-  while (1) {
-    fgets(buf,1024,stdin);
-    out = url_decode(buf);
-    printf("%s", out);
-    fflush(stdout);
+  int size = 1024;
+  char *buff = (char*)malloc(size);
+ 
+  while(NULL != fgets(buff, size, stdin)){
+    printf("%s", url_decode(buff));
   }
+
+  free(buff);
 
   return 0;
 }
